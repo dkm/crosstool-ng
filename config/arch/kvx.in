@@ -1,0 +1,11 @@
+# KVX specific config options
+
+## no-package
+## select ARCH_SUPPORTS_32
+## select ARCH_SUPPORTS_64
+## select ARCH_DEFAULT_64
+## select ARCH_REQUIRES_MULTILIB
+## select ARCH_USE_MMU
+##
+## help The KVX MPPA Processor architectures, as defined by:
+## help     http://www.kalrayinc.com
