@@ -1,0 +1,45 @@
+From c1cae7ca56f0933186884feacff94da5f5abf010 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marc=20Poulhi=C3=A8s?= <marc.poulhies@kalray.eu>
+Date: Fri, 8 Nov 2019 14:34:45 +0100
+Subject: [PATCH] Simple initial support for K1 MPPA
+
+Adds the strict minimum to build a bare-metal toolchain for K1 MPPA
+by providing custom git path to Kalray's github repositories.
+---
+ config/arch/k1.in        | 10 ++++++++++
+ scripts/build/arch/k1.sh |  5 +++++
+ scripts/config.sub       |  1 +
+ 3 files changed, 16 insertions(+)
+ create mode 100644 config/arch/k1.in
+ create mode 100644 scripts/build/arch/k1.sh
+
+diff --git a/config/arch/k1.in b/config/arch/k1.in
+new file mode 100644
+index 00000000..4c60c063
+--- /dev/null
++++ b/config/arch/k1.in
+@@ -0,0 +1,10 @@
++# K1 specific config options
++
++## no-package
++## select ARCH_SUPPORTS_32
++## select ARCH_SUPPORTS_64
++## select ARCH_DEFAULT_64
++## select ARCH_REQUIRES_MULTILIB
++##
++## help The K1 MPPA Coolidge architecture, as defined by:
++## help     http://www.kalray.eu
+diff --git a/scripts/build/arch/k1.sh b/scripts/build/arch/k1.sh
+new file mode 100644
+index 00000000..f6430ebf
+--- /dev/null
++++ b/scripts/build/arch/k1.sh
+@@ -0,0 +1,5 @@
++# Compute K1-specific values
++
++CT_DoArchTupleValues() {
++    CT_TARGET_ARCH="${CT_ARCH}"
++}
+-- 
+2.22.0.214.g8dca754b1e
+

@@ -1,0 +1,27 @@
+name: Build kvx-elf and kvx-linux
+
+on: [push]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-16.04,ubuntu-18.04]
+        target: [kvx-unknown-elf, kvx-unknown-linux-uclibc]
+
+    runs-on: ${{ matrix.os }}
+   
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install packages
+      run: sudo apt-get install bison flex libncurses5-dev texinfo help2man g++ libtool-bin
+    - name: Configure CTNG
+      run: ./bootstrap && ./configure --enable-local
+    - name: Build CTNG
+      run: make
+    - name: Configure ${{ matrix.target }}
+      run: ./ct-ng ${{ matrix.target }}
+    - name: Patch config
+      run: sed -i -e 's/^.*\(CT_LOG_PROGRESS_BAR\).*$/# \1 is not set/' .config
+    - name: Build ${{ matrix.target }}
+      run: ./ct-ng build
