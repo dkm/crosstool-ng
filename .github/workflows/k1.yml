@@ -7,6 +7,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-16.04,ubuntu-18.04, ubuntu-latest]
+        target: [k1-unknown-elf, k1-unknown-linux-uclibc]
 
     runs-on: ${{ matrix.os }}
    
@@ -18,7 +19,7 @@ jobs:
       run: ./bootstrap && ./configure --enable-local
     - name: Build CTNG
       run: make
-    - name: Configure k1-elf
-      run: ./ct-ng k1-unknown-elf
-    - name: Build k1-elf
+    - name: Configure ${{ matrix.target }}
+      run: ./ct-ng ${{ matrix.target }}
+    - name: Build ${{ matrix.target }}
       run: ./ct-ng build
