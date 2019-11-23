@@ -58,6 +58,7 @@ do_kernel_headers()
     case "${CT_ARCH}:${CT_ARCH_BITNESS}" in
         # ARM 64 (aka AArch64) is special
         arm:64) kernel_arch="arm64";;
+	k1*) kernel_arch="k1c";;
     esac
 
     CT_DoLog EXTRA "Installing kernel headers"
