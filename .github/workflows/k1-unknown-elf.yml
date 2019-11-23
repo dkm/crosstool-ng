@@ -1,0 +1,24 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-16.04,ubuntu-18.04, ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+   
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install packages
+      run: sudo apt-get install bison flex libncurses5-dev texinfo help2man g++ libtool-bin
+    - name: Configure CTNG
+      run: ./bootstrap && ./configure --enable-local
+    - name: Build CTNG
+      run: make
+    - name: Configure k1-elf
+      run: ./ct-ng k1-unknown-elf
+    - name: Build k1-elf
+      run: ./ct-ng build
