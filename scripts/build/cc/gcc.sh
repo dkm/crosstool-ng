@@ -48,6 +48,7 @@ cc_gcc_lang_list() {
     [ "${CT_CC_LANG_OBJC}" = "y"     ] && lang_list+=",objc"
     [ "${CT_CC_LANG_OBJCXX}" = "y"   ] && lang_list+=",obj-c++"
     [ "${CT_CC_LANG_GOLANG}" = "y"   ] && lang_list+=",go"
+    [ "${CT_CC_LANG_RUST}" = "y"   ] && lang_list+=",rust"
     lang_list+="${CT_CC_LANG_OTHERS:+,${CT_CC_LANG_OTHERS}}"
 
     printf "%s" "${lang_list}"

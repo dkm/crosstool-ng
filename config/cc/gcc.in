@@ -8,6 +8,7 @@
 ## select CC_SUPPORT_OBJC
 ## select CC_SUPPORT_OBJCXX
 ## select CC_SUPPORT_GOLANG
+## select CC_SUPPORT_RUST
 # ISL 0.15 is the oldest release present in CTNG.
 # GCC7 requires ISL 0.15+
 # GCC6 requires ISL 0.14+ (it says 0.14-0.16, but accepts newer ISL as well)
